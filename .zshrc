@@ -114,7 +114,7 @@ alias pip="pip3"
 alias p10k_update="git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull"
 
 # change directory to parent of obsidian vaults
-alias obsidian_dir="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Notes"
+alias obsidian_dir="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
