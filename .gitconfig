@@ -2,8 +2,10 @@
 	name = Peter Job
 	email = ptjob6@gmail.com
 [pull]
-  ff = false
-  rebase = false
+  	ff = only
+  	rebase = true
+[rebase]
+  	autoStash = true
 [merge]
 	tool = vscode
 [mergetool "vscode"]
@@ -12,8 +14,6 @@
 	tool = vscode
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
-[core]
-	filemode = false
 [oh-my-zsh]
 	hide-dirty = 1
 [filter "lfs"]
