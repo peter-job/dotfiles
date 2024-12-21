@@ -1,0 +1,25 @@
+[user]
+	name = Peter Job
+	email = ptjob6@gmail.com
+[pull]
+  ff = false
+  rebase = false
+[merge]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[core]
+	filemode = false
+[oh-my-zsh]
+	hide-dirty = 1
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[credential]
+	helper = osxkeychain
