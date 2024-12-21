@@ -2,7 +2,6 @@
 	name = Peter Job
 	email = ptjob@icloud.com
 [pull]
-  	ff = only
   	rebase = true
 [rebase]
   	autoStash = true
