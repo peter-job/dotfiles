@@ -2,14 +2,18 @@
 
 # Extract the OS information
 os=$(lsb_release -si)
+branch=$(git branch --show-current)
 
 # Check if the OS is Ubuntu
-if [ "$os" = "Ubuntu" ]; then
+if [ "$os" = "Ubuntu" ] && [ "$branch" != "ubuntu" ]; then
     echo "OS is Ubuntu. Checking out *ubuntu* branch..."
     git checkout ubuntu
     ./setup.sh
+elif [ "$os" = "Ubuntu" ] && [ "$branch" = "ubuntu" ]; then
+    echo "OS is Ubuntu. Proceeding with the setup..."
 else
-    echo "OS not detected. Proceeding with the default setup..."
+    echo "Unsupported OS. Exiting..."
+    exit 1
 fi
 
 # Install omzsh
