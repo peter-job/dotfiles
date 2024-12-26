@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+alias python="python3"
+alias pip="pip3"
+
+# Ref: https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#how-do-i-update-powerlevel10k
+alias p10k_update="git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull"
+
+# Change directory to parent of obsidian vaults
+alias obsidian_dir="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'

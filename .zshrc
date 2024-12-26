@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -107,14 +109,19 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias python="python3"
-alias pip="pip3"
+# Load dotfiles if they're readable and regular files
+load_dotfiles() {
+local file
+  local dotfiles=(
+    ~/.aliases
+    ~/.extra
+  )
+  for file in $dotfiles; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+  done
+}
 
-# ref: https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#how-do-i-update-powerlevel10k
-alias p10k_update="git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull"
-
-# change directory to parent of obsidian vaults
-alias obsidian_dir="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
+load_dotfiles
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -122,3 +129,9 @@ export PATH="/usr/local/sbin:$PATH"
 
 # Use homebrew make
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+
+# Created by `pipx` on 2024-09-22 03:33:24
+export PATH="$PATH:/Users/Peter/.local/bin"
+
+# Add go executables to path
+export PATH="$PATH:/Users/Peter/go/bin"
