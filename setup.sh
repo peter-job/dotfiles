@@ -7,7 +7,7 @@ branch=$(git branch --show-current)
 # Check if the OS is Ubuntu
 if [ "$os" = "Ubuntu" ] && [ "$branch" != "ubuntu" ]; then
     echo "OS is Ubuntu. Checking out *ubuntu* branch..."
-    git fetch origin
+    git fetch origin ubuntu
     git checkout ubuntu
     ./setup.sh
 elif [ "$os" = "Ubuntu" ] && [ "$branch" = "ubuntu" ]; then
