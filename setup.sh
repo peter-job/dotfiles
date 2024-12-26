@@ -1,21 +1,24 @@
 #!/bin/zsh
 
 # Extract the OS information
-os=$(lsb_release -si)
+os=$(uname -s)
 branch=$(git branch --show-current)
 
-# Check if the OS is Ubuntu
-if [ "$os" = "Ubuntu" ] && [ "$branch" != "ubuntu" ]; then
-    echo "OS is Ubuntu. Checking out *ubuntu* branch..."
-    git fetch origin ubuntu
-    git checkout ubuntu
-    ./setup.sh
-elif [ "$os" = "Ubuntu" ] && [ "$branch" = "ubuntu" ]; then
-    echo "OS is Ubuntu. Proceeding with the setup..."
+# Normalize the OS name
+if [ "$os" = "Darwin" ]; then
+    os="macOS"
+elif [ "$os" = "Linux" ]; then
+    os=$(lsb_release -si)
+fi
+
+# Check the OS and branch
+if [ "$os" = "Ubuntu" ] && [ "$branch" = "ubuntu" ]; then
+    echo "OS is Ubuntu, on branch ubuntu. Proceeding..."
 else
-    echo "Unsupported OS. Exiting..."
+    echo "OS is $os on branch $branch. Proceeding..."
     exit 1
 fi
+
 
 # Install omzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -25,4 +28,6 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 # Copy dotfiles
 cp ./.* ~/
+
+echo "Setup complete"
 
