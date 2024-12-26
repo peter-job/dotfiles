@@ -4,7 +4,7 @@
 os=$(lsb_release -si)
 
 # Check if the OS is Ubuntu
-if [ "$os" == "Ubuntu" ]; then
+if [ "$os" = "Ubuntu" ]; then
     echo "OS is Ubuntu. Checking out *ubuntu* branch..."
     git checkout ubuntu
     ./setup.sh
