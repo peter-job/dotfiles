@@ -31,8 +31,14 @@ curl -sS https://starship.rs/install.sh | sh -s -- -y
 #region Sync dotfiles
 
 # Copy dotfiles
-cp ./.* ~/
+rsync --exclude ".git/" \
+    --exclude ".DS_Store" \
+    --exclude "bootstrap.sh" \
+    --exclude "dotfiles.code-workspace" \
+    --exclude "readme.md" \
+    -avh --no-perms . ~
 
 #endregion
 
-echo "Setup complete"
+echo "Setup complete. Starting a new zsh session..."
+zsh

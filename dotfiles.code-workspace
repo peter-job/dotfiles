@@ -9,7 +9,10 @@
       "path": "/Users/Peter"
     },
     {
-      "path": "/Users/Peter/Source/mathiasbynens-dotfiles"
+      "path": "../mathiasbynens-dotfiles"
+    },
+    {
+      "path": "../dotfiles-avb"
     }
   ],
   "settings": {
