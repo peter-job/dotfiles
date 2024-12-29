@@ -16,13 +16,8 @@ elif [ "$os" = "Linux" ]; then
     os=$(lsb_release -si)
 fi
 
-# Check the OS and branch
-if [ "$os" = "Ubuntu" ] && [ "$branch" = "ubuntu" ]; then
-    echo "OS is Ubuntu, on branch ubuntu. Proceeding..."
-else
-    echo "OS is $os on branch $branch. Proceeding..."
-    exit 1
-fi
+# Perform setup based on OS and branch
+echo "OS is $os on branch $branch. Proceeding..."
 
 #endregion
 
