@@ -7,6 +7,9 @@
     {
       "name": "dotfiles (home)",
       "path": "/Users/Peter"
+    },
+    {
+      "path": "/Users/Peter/Source/mathiasbynens-dotfiles"
     }
   ],
   "settings": {
