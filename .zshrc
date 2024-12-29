@@ -1,17 +1,18 @@
 # shellcheck shell=bash
 
-
 # Load dotfiles if they're readable and regular files
 load_dotfiles() {
-local file
+  local file
   local dotfiles=(
     ~/.path
     ~/.aliases
     ~/.extra
   )
   for file in $dotfiles; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+    [ -r "$file" ] && [ -f "$file" ] && source "$file"
   done
 }
 
 load_dotfiles
+
+eval "$(starship init zsh)"

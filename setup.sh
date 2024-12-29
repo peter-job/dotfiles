@@ -24,7 +24,7 @@ echo "OS is $os on branch $branch. Proceeding..."
 #region Install dependencies
 
 # Install starship
-curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 #endregion
 
