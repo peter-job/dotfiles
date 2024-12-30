@@ -24,3 +24,9 @@
 	helper = osxkeychain
 [alias]
 	graph = log --all --decorate --oneline --graph
+	save = "!f() { \
+		msg=\"$*\"; \
+		[ -n \"$msg\" ] || msg='Default stash message'; \
+		git stash push --include-untracked -m \"$msg\" && \
+		git stash apply; \
+	}; f"
