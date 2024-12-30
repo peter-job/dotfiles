@@ -9,10 +9,13 @@
       "path": "/Users/Peter"
     },
     {
-      "path": "../mathiasbynens-dotfiles"
+      "path": "../dotfiles-avb"
     },
     {
-      "path": "../dotfiles-avb"
+      "path": "../dotfiles-examples"
+    },
+    {
+      "path": "../../.local/share/chezmoi"
     }
   ],
   "settings": {
