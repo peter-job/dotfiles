@@ -17,8 +17,5 @@
     {
       "path": "../../.local/share/chezmoi"
     }
-  ],
-  "settings": {
-    "git.autoRepositoryDetection": false
-  }
+  ]
 }
