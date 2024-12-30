@@ -3,6 +3,8 @@
 # Setup script for my dotfiles
 # Todo: I don't like using branches to manage different OSes. If they never converge, seems like a bad idea.
 
+HOME_DIR=~
+
 #region Check OS and branch (WIP)
 
 # Extract the OS information
@@ -30,13 +32,16 @@ curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 #region Sync dotfiles
 
-# Copy dotfiles
+# Copy repo, excluding .git directory and non-dotfiles
 rsync --exclude ".git/" \
     --exclude ".DS_Store" \
-    --exclude "bootstrap.sh" \
+    --exclude "setup.sh" \
     --exclude "dotfiles.code-workspace" \
     --exclude "readme.md" \
-    -avh --no-perms . ~
+    -avh --no-perms . $HOME_DIR
+
+# Copy .git directory, exactly mirroring repo
+rsync --archive --delete --verbose --no-perms .git/ $HOME_DIR/.git
 
 #endregion
 
