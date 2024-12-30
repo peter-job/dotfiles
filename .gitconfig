@@ -22,3 +22,5 @@
 	clean = git-lfs clean -- %f
 [credential]
 	helper = osxkeychain
+[alias]
+	graph = log --all --decorate --oneline --graph
