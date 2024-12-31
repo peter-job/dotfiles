@@ -28,9 +28,21 @@ if ! command -v apt >/dev/null; then
   exit 1
 fi
 
-echo "Installing missing packages with APT: ${missing_packages[*]}"
+if [[ "$(id -u)" -ne 0 ]]; then
+  # Ensure sudo is installed
+  if ! command -v sudo >/dev/null; then
+    echo "sudo not found. Installing sudo..."
+    apt update
+    apt install -y sudo
+  fi
 
-sudo apt update
-sudo DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends "${missing_packages[@]}"
+  echo "Installing missing packages with APT: ${missing_packages[*]}"
+  sudo apt update
+  sudo DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends "${missing_packages[@]}"
+else
+  echo "Installing missing packages with APT: ${missing_packages[*]}"
+  apt update
+  DEBIAN_FRONTEND=noninteractive apt install --yes --no-install-recommends "${missing_packages[@]}"
+fi
 
 echo "Packages installed successfully."
