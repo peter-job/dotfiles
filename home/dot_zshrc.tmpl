@@ -67,10 +67,10 @@ export EDITOR=nvim
 export PSQLRC=$XDG_CONFIG_HOME/psql/psqlrc
 {{ end -}} */}}
 
-if command -v atuin > /dev/null; then
+{{ if eq (joinPath .chezmoi.homeDir ".atuin/bin" | lstat).type "dir" -}}
   . "$HOME/.atuin/bin/env"
   eval "$(atuin init zsh)"
-fi
+{{ end }}
 
 {{/*
 {{ if stat (joinPath .chezmoi.homeDir ".nvm") }}
