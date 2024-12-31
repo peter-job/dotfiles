@@ -62,3 +62,6 @@
 
 [github]
     refreshPeriod = "12h"
+
+[hooks.read-source-state.pre]
+command = "{{ .chezmoi.workingTree }}/home/.chezmoihooks/ensure-pre-requisites.sh"
