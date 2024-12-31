@@ -16,10 +16,19 @@
 {{-   $headless = true -}}
 {{- end -}}
 
+{{/* work around unreliable hostname on darwin */}}
 {{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
+{{-   if eq $computerName "Peter's MacBook Pro" -}}
+{{-     $hostname = "peters-macbook-pro" -}}
+{{-   else -}}
+{{-     $hostname = $computerName -}}
+{{-   end -}}
+{{- end -}}
 
 {{- if not $ephemeral -}}
-{{-   if eq $hostname "Peters-MacBook-Pro" -}}
+{{-   if eq $hostname "peters-macbook-pro" -}}
 {{-     $personal = true -}}
 {{-   else if eq $hostname "ubuntu" -}}
 {{-     $headless = true -}}
