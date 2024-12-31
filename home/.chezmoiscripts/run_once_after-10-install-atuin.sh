@@ -1,6 +1,4 @@
 #!/bin/bash
-#
-# Install atuin
 
 echo "Installing atuin"
 
