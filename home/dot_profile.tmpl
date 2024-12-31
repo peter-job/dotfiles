@@ -1,0 +1,25 @@
+
+if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  # shellcheck disable=SC2312
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [ -x "${HOME}/.linuxbrew/bin/brew" ]; then
+  # shellcheck disable=SC2312
+  eval "$("${HOME}/.linuxbrew/bin/brew" shellenv)"
+fi
+
+if [ -d "${HOME}/.volta/bin" ]; then
+  export VOLTA_HOME="${HOME}/.volta"
+  export PATH="${VOLTA_HOME}/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/go/bin" ]; then
+  export PATH="${HOME}/go/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/bin" ]; then
+  export PATH="${HOME}/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/.local/bin" ]; then
+  export PATH="${HOME}/.local/bin:${PATH}"
+fi
