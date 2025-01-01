@@ -1,6 +1,9 @@
 [user]
 	name = Peter Job
 	email = ptjob@icloud.com
+[advice]
+	addEmptyPathspec = false
+	statusHints = false
 [pull]
   	rebase = true
 [rebase]
@@ -14,19 +17,24 @@
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
 [oh-my-zsh]
+	hide-status = 1
 	hide-dirty = 1
+[push]
+	autoSetupRemote = true
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 [credential]
+	# todo: macos specific, switch template based on OS
 	helper = osxkeychain
+[pager]
+	branch = false
 [alias]
 	graph = log --all --decorate --oneline --graph
 	save = "!f() { \
 		msg=\"$*\"; \
-		[ -n \"$msg\" ] || msg='Default stash message'; \
-		git stash push --include-untracked -m \"$msg\" && \
+		git stash push --include-untracked -m \"$msg\"; \
 		git stash apply; \
 	}; f"
