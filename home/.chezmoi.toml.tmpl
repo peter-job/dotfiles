@@ -1,9 +1,8 @@
-{{/* boolean feature tags */}}
+{{/* boolean feature flags */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $work := false -}}{{/* true if this machine is a work machine */}}
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
-{{- "" -}}
 
 {{- $osID := .chezmoi.os -}}
 {{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
@@ -26,7 +25,6 @@
 {{-     $hostname = $computerName -}}
 {{-   end -}}
 {{- end -}}
-
 {{- if not $ephemeral -}}
 {{-   if eq $hostname "peters-macbook-pro" -}}
 {{-     $personal = true -}}
@@ -42,22 +40,25 @@
 {{-   end -}}
 {{- end -}}
 
+{{ $name := "Peter Job" }}
 {{- $email := "ptjob@icloud.com" -}}
 {{- if $work -}}
 {{/* {{-   $email = "ptjob@mcdonalds.com" -}} */}}
 {{- end -}}
 
 [data]
-    ephemeral = {{ $ephemeral }}
     email = {{ $email | quote }}
+    name = {{ $name | quote }}
     work = {{ $work }}
+    personal = {{ $personal }}
+    ephemeral = {{ $ephemeral }}
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
-    personal = {{ $personal }}
     osid = {{ $osID | quote }}
     zshPlugins = [
         "zsh-syntax-highlighting",
-        "zsh-autosuggestions"
+        "zsh-autosuggestions",
+        "zsh-completions"
     ]
 
 [github]
