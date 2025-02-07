@@ -1,0 +1,8 @@
+{{/* Switch global Brewfile based on personal or work profile */}}
+{{- if eq .osid "darwin" }}
+{{-   if .personal }}
+{{ .chezmoi.sourceDir }}/.Brewfile_personal
+{{-   else }}
+{{ .chezmoi.sourceDir }}/.Brewfile_work
+{{-   end }}
+{{- end }}

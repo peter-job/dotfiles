@@ -7,3 +7,7 @@
 .oh-my-zsh/plugins/**
 .oh-my-zsh/templates/**
 .oh-my-zsh/custom/themes/powerlevel10k/**/*.zwc
+{{- if ne .osid "darwin" }}
+{{/* Global Brewfile is symlinked to specific profile in chezmoi source directory */}}
+.Brewfile
+{{- end }}

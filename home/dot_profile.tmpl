@@ -1,12 +1,3 @@
-
-if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
-  # shellcheck disable=SC2312
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-elif [ -x "${HOME}/.linuxbrew/bin/brew" ]; then
-  # shellcheck disable=SC2312
-  eval "$("${HOME}/.linuxbrew/bin/brew" shellenv)"
-fi
-
 if [ -d "${HOME}/.volta/bin" ]; then
   export VOLTA_HOME="${HOME}/.volta"
   export PATH="${VOLTA_HOME}/bin:${PATH}"
@@ -23,3 +14,11 @@ fi
 if [ -d "${HOME}/.local/bin" ]; then
   export PATH="${HOME}/.local/bin:${PATH}"
 fi
+
+{{- if eq .osid "darwin" }}
+# Homebrew environment: https://docs.brew.sh/Manpage#environment
+# Brewfile used by `brew bundle <command> --global`, symlinked to chezmoi source directory
+export HOMEBREW_BUNDLE_FILE_GLOBAL=${HOME}/.Brewfile
+# Exclude VS Code extensions from Brewfile
+export HOMEBREW_BUNDLE_DUMP_NO_VSCODE=1
+{{- end }}
