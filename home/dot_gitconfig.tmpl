@@ -32,9 +32,17 @@
 [pager]
 	branch = false
 [alias]
+	# Show the log as a graph
 	graph = log --all --decorate --oneline --graph
+
+	# Save current state as a stash with an optional message from args
 	save = "!f() { \
 		msg=\"$*\"; \
 		git stash push --include-untracked -m \"$msg\"; \
 		git stash apply; \
+	}; f"
+
+	# Pretty print the diff using bat as a pager
+	diffp = "!f() { \
+		git diff --name-only --relative --diff-filter=d | xargs bat --diff; \
 	}; f"
