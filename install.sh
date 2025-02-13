@@ -59,6 +59,8 @@ if [ -n "${DOTFILES_USE_LOCAL_SOURCE-}" ]; then
   # shellcheck disable=SC2312
   script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
   set -- "$@" --source="${script_dir}"
+else
+  set -- "$@" "${DOTFILES_GIT_USERNAME:-peter-job}"
 fi
 
 if [ -n "${DOTFILES_ONE_SHOT-}" ]; then
