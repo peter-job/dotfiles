@@ -52,11 +52,14 @@ if ! chezmoi="$(command -v chezmoi)"; then
   unset chezmoi_install_script bin_dir
 fi
 
-# POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
-# shellcheck disable=SC2312
-script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
+set -- init --verbose=false "$@"
 
-set -- init --source="${script_dir}" --verbose=false "$@"
+if [ -n "${DOTFILES_USE_LOCAL_SOURCE}" ]; then
+  # POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
+  # shellcheck disable=SC2312
+  script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
+  set -- "$@" --source="${script_dir}"
+fi
 
 if [ -n "${DOTFILES_ONE_SHOT-}" ]; then
   set -- "$@" --one-shot
