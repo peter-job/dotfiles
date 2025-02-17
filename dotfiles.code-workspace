@@ -1,14 +1,6 @@
 {
   "folders": [
     {
-      "name": "dotfiles (repo)",
-      "path": "/Users/Peter/Source/dotfiles"
-    },
-    {
-      "name": "dotfiles (home)",
-      "path": "/Users/Peter"
-    },
-    {
       "path": "../dotfiles-avb"
     },
     {
