@@ -1,4 +1,6 @@
-# Dotfiles
+# Peter Job's dotfiles
+
+My dotfiles for macOS and linux, managed with [`chezmoi`](https://chezmoi.io).
 
 ## Installation
 
@@ -69,20 +71,25 @@ chezmoi init $GITHUB_USERNAME
 The dotfiles can be installed directly from the repo via GitHub:
 
 ```bash
-$GITHUB_USERNAME="peter-job"
+GITHUB_USERNAME="peter-job"
 git clone "https://github.com/$GITHUB_USERNAME/dotfiles.git"
 cd dotfiles
 ./install.sh
 ```
 
-## Risks and considerations
+## Managing dotfiles
 
-The dependency on chezmoi might be an issue in some restricted corporate environments, minimal container images, etc. See an [issue raised in the GitHub repo](https://github.com/twpayne/chezmoi/issues/1410).
+### Syncing brew packages
 
-If the dependency becomes too much of an issue, there are some mechanisms to [migrate away from chezmoi](https://www.chezmoi.io/user-guide/advanced/migrate-away-from-chezmoi/). The pain-points would be around migrating the chezmoi-specific features like templating, hooks, secrets to a new system.
+> TODO: Write something about the brew bundle --global + symlink I created here.
 
-It's something I'd like to keep in mind when building out these dotfiles – not just specific to the dependency on chezmoi, but on any tool. One way to mitigate the risk is pushing "core" functionality into more portable, standard formats like POSIX-compatible shell scripts, and make sparing use of the tool-specific features, being aware of how they might be replaced in the future.
+## Thoughts and considerations
 
+I keep track of some [thoughts and considerations](docs/thoughts-and-considerations.md) to help me think through the decisions made in these dotfiles.
+
+## Credits
+
+I learned and borrowed a lot from [Felipe Santos' dotfiles](https://github.com/felipecrs/dotfiles) and [Tom Payne's dotfiles](https://github.com/twpayne/dotfiles) (the creator of chezmoi).
 
 <!-- Todo: merge in layouts from avb dotfiles and manage with chezmoi-->
 <!--
