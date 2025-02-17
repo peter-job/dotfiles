@@ -19,7 +19,7 @@ else
   chezmoi=chezmoi
 fi
 
-args="init --apply"
+args="init"
 
 if [ -n "${DOTFILES_USE_LOCAL_SOURCE-}" ]; then
   # POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
@@ -27,10 +27,16 @@ if [ -n "${DOTFILES_USE_LOCAL_SOURCE-}" ]; then
   script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
   args="$args --source=\"$script_dir\""
 else
+  # Clone from github by default
+  # In dev containers we want this because local source is only a shallow clone
+  # Repo name must be "dotfiles".
+  # If you use a different repo name, add a forward slash and repo name after the username below.
   args="$args ${DOTFILES_GITHUB_USERNAME:-peter-job}"
 fi
 
+args="$args --apply"
+
 echo "Executing '$chezmoi $args'"
 
-# exec: replace current process with chezmoi init
+# Replace current process with chezmoi + init args
 exec "$chezmoi" "$args"
