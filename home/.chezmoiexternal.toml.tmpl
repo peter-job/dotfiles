@@ -1,6 +1,44 @@
+{{ $arch := .chezmoi.arch | replace "amd64" "x86_64" | replace "arm64" "aarch64" -}}
+{{ $rustOS := .chezmoi.os | replace "linux" "unknown-linux-gnu" | replace "darwin" "apple-darwin" | replace "windows" "pc-windows-msvc" -}}
+
+
 {{- if eq .osid "linux-ubuntu" }}
 {{/* Placeholder */}}
 {{- end }}
+
+[".local/bin/bat"]
+  type = "file"
+  url = "https://github.com/sharkdp/bat/releases/download/{{ (gitHubLatestRelease "sharkdp/bat").TagName }}/bat-{{ (gitHubLatestRelease "sharkdp/bat").TagName }}-{{ $arch }}-{{ $rustOS }}.tar.gz"
+  executable = true
+  refreshPeriod = "168h"
+  [".local/bin/bat".filter]
+    command = "tar"
+    args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "bat-{{ (gitHubLatestRelease "sharkdp/bat").TagName }}-{{ $arch }}-{{ $rustOS }}/bat"]
+
+[".local/share/zsh-completions/_bat"]
+  type = "file"
+  url = "https://github.com/sharkdp/bat/releases/download/{{ (gitHubLatestRelease "sharkdp/bat").TagName }}/bat-{{ (gitHubLatestRelease "sharkdp/bat").TagName }}-{{ $arch }}-{{ $rustOS }}.tar.gz"
+  refreshPeriod = "168h"
+  [".local/share/zsh-completions/_bat".filter]
+    command = "tar"
+    args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "bat-{{ (gitHubLatestRelease "sharkdp/bat").TagName }}-{{ $arch }}-{{ $rustOS }}/autocomplete/bat.zsh"]
+
+[".local/bin/rg"]
+  type = "file"
+  url = "https://github.com/BurntSushi/ripgrep/releases/download/{{ (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}/ripgrep-{{ (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}-{{ $arch }}-{{ $rustOS }}.tar.gz"
+  executable = true
+  refreshPeriod = "168h"
+  [".local/bin/rg" .filter]
+    command = "tar"
+    args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "ripgrep-{{ (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}-{{ $arch }}-{{ $rustOS }}/rg"]
+
+[".local/share/zsh-completions/_rg"]
+  type = "file"
+  url = "https://github.com/BurntSushi/ripgrep/releases/download/{{ (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}/ripgrep-{{ (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}-{{ $arch }}-{{ $rustOS }}.tar.gz"
+  refreshPeriod = "168h"
+  [".local/share/zsh-completions/_rg" .filter]
+    command = "tar"
+    args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "ripgrep-{{ (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}-{{ $arch }}-{{ $rustOS }}/complete/_rg"]
 
 {{- if and (not .ephemeral) (not .headless) }}
 {{-   $fontDir := "" }}

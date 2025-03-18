@@ -28,6 +28,8 @@
 {{- if not $ephemeral -}}
 {{-   if eq $hostname "peters-macbook-pro" -}}
 {{-     $personal = true -}}
+{{-   else if eq $hostname "peters-taggle-macbook-pro" -}}
+{{-     $work = true -}}
 {{-   else if eq $hostname "ubuntu" -}}
 {{-     $headless = true -}}
 {{-     $personal = true -}}
@@ -43,7 +45,7 @@
 {{ $name := "Peter Job" }}
 {{- $email := "ptjob@icloud.com" -}}
 {{- if $work -}}
-{{/* {{-   $email = "ptjob@mcdonalds.com" -}} */}}
+{{-   $email = "peter.job@taggle.com.au" -}}
 {{- end -}}
 
 [data]
