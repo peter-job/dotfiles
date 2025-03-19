@@ -8,6 +8,13 @@ alias pip="pip3"
 alias obsidian_dir="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
 {{- end }}
 
+{{- if eq .hostname "peters-taggle-macbook-pro" }}
+# Change directory to parent of obsidian vaults
+alias obsidian_dir="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
+# Change directory to VS Code devcontainer configs repo
+alias devcontainers_dir="cd ~/Library/Application Support/Code/User/globalStorage/ms-vscode-remote.remote-containers/configs"
+{{- end }}
+
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
 
