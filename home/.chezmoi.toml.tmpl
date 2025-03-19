@@ -21,6 +21,8 @@
 {{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
 {{-   if eq $computerName "Peter's MacBook Pro" -}}
 {{-     $hostname = "peters-macbook-pro" -}}
+{{-   else if eq $computerName "Peter’s Taggle MacBook Pro" -}}
+{{-     $hostname = "peters-taggle-macbook-pro" -}}
 {{-   else -}}
 {{-     $hostname = $computerName -}}
 {{-   end -}}
