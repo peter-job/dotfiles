@@ -44,9 +44,15 @@
 {{-   end -}}
 {{- end -}}
 
-{{ $name := "Peter Job" }}
+{{- $name := "Peter Job" -}}
+{{/* use personal email as default / fallback */}}
 {{- $email := "ptjob@icloud.com" -}}
-{{- if $work -}}
+{{/* use git email if available (e.g. when passed through in a devcontainer) */}}
+{{- $gitEmail := output "sh" "-c" "git config user.email 2>/dev/null || true" | trim -}}
+{{- if $gitEmail -}}
+{{-   $email = $gitEmail -}}
+{{/* else use work email if hostname matches work macbook */}}
+{{- else if $work -}}
 {{-   $email = "peter.job@taggle.com.au" -}}
 {{- end -}}
 
