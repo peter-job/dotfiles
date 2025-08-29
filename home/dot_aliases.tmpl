@@ -25,3 +25,6 @@ alias cat=bat
 {{- else if lookPath "batcat" }}
 alias cat=batcat
 {{- end }}
+
+# Date in format YYYY-MM-DD-THH-MM-SS+ZZZZ, safe for filenames
+alias dtlocal=date +"%Y-%m-%d-T%H-%M-%S%z"
