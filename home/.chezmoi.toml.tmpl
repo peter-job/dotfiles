@@ -1,8 +1,7 @@
 {{/* boolean feature flags */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $work := false -}}{{/* true if this machine is a work machine */}}
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
-{{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+{{- $profile := "" -}}{{/* profile can be "work" or "personal" */}}
 
 {{- $osID := .chezmoi.os -}}
 {{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
@@ -13,6 +12,11 @@
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
 {{-   $ephemeral = true -}}
 {{-   $headless = true -}}
+{{- end -}}
+
+{{/* Check for profile override from install.sh */}}
+{{- if env "DOTFILES_PROFILE" -}}
+{{-   $profile = env "DOTFILES_PROFILE" -}}
 {{- end -}}
 
 {{/* work around unreliable hostname on darwin */}}
@@ -27,20 +31,22 @@
 {{-     $hostname = $computerName -}}
 {{-   end -}}
 {{- end -}}
-{{- if not $ephemeral -}}
+{{/* Only do hostname-based detection if profile not overridden */}}
+{{- if and (not $ephemeral) (not $profile) -}}
 {{-   if eq $hostname "peters-macbook-pro" -}}
-{{-     $personal = true -}}
+{{-     $profile = "personal" -}}
 {{-   else if eq $hostname "peters-taggle-macbook-pro" -}}
-{{-     $work = true -}}
+{{-     $profile = "work" -}}
 {{-   else if eq $hostname "ubuntu" -}}
 {{-     $headless = true -}}
-{{-     $personal = true -}}
+{{-     $profile = "personal" -}}
 {{-   else if stdinIsATTY -}}
 {{-     $headless = promptBoolOnce . "headless" "headless" -}}
 {{-     $ephemeral = promptBoolOnce . "ephemeral" "ephemeral" -}}
 {{-   else -}}
 {{-     $ephemeral = true -}}
 {{-     $headless = true -}}
+{{-     $profile = "personal" -}}
 {{-   end -}}
 {{- end -}}
 
@@ -51,16 +57,15 @@
 {{- $gitEmail := output "sh" "-c" "git config user.email 2>/dev/null || true" | trim -}}
 {{- if $gitEmail -}}
 {{-   $email = $gitEmail -}}
-{{/* else use work email if hostname matches work macbook */}}
-{{- else if $work -}}
+{{/* else use work email if profile is work */}}
+{{- else if eq $profile "work" -}}
 {{-   $email = "peter.job@taggle.com.au" -}}
 {{- end -}}
 
 [data]
     email = {{ $email | quote }}
     name = {{ $name | quote }}
-    work = {{ $work }}
-    personal = {{ $personal }}
+    profile = {{ $profile | quote }}
     ephemeral = {{ $ephemeral }}
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}

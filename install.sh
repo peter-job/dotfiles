@@ -4,6 +4,27 @@
 
 set -e # -e: exit on error
 
+# Parse flags
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --profile)
+      if [ -z "${2-}" ]; then
+        echo "Error: --profile requires a value (work or personal)" >&2
+        exit 1
+      fi
+      if [ "$2" != "work" ] && [ "$2" != "personal" ]; then
+        echo "Error: --profile must be either 'work' or 'personal'" >&2
+        exit 1
+      fi
+      export DOTFILES_PROFILE="$2"
+      shift 2
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
 if [ ! "$(command -v chezmoi)" ]; then
   bin_dir="$HOME/.local/bin"
   chezmoi="$bin_dir/chezmoi"
