@@ -31,3 +31,7 @@ alias dtlocal='date +"%Y-%m-%dT%H-%M-%S%z"'
 
 # Uninstall all python packages in the current environment
 alias pipclean="pip freeze | xargs pip uninstall -y"
+
+# uv commands
+alias uvoutdated='uv pip list --outdated'
+alias uvranges='uv pip tree --show-version-specifiers'
