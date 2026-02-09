@@ -34,6 +34,9 @@
 [alias]
 	# Show the log as a graph
 	graph = log --all --decorate --oneline --graph
+	
+	# Show the git log in a compact form with datetime, author, message, ref names 
+	logc = log --format='%C(auto)%h %ai (%al) %d %s'
 
 	# Save current state as a stash with an optional message from args
 	save = "!f() { \
@@ -52,3 +55,12 @@
 
 	# Checkout a new branch
 	cb = checkout -b
+	
+	# Skip changes to a file in the working tree (local ignore)
+  skip = "!f(){ git update-index --skip-worktree -- \"$@\"; }; f"
+
+  # Unignore changes to a file in the working tree (remove local ignore)
+  unskip = "!f(){ git update-index --no-skip-worktree -- \"$@\"; }; f"
+
+  # List skipped files in the working tree
+  skipped = "!f(){ git ls-files -v | awk '/^S /{print substr($0,3)}'; }; f"
