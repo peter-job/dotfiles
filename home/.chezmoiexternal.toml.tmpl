@@ -41,6 +41,13 @@
     command = "tar"
     args = ["--extract", "--file", "/dev/stdin", "--gzip", "--to-stdout", "ripgrep-{{ (gitHubLatestRelease "BurntSushi/ripgrep").TagName }}-{{ $rgArchAndrustOs }}/complete/_rg"]
 
+[".local/bin/uv"]
+    type = "archive-file"
+    url = "https://github.com/astral-sh/uv/releases/download/{{ (gitHubLatestRelease "astral-sh/uv").TagName }}/uv-{{ $arch }}-{{ $rustOs }}.tar.gz"
+    refreshPeriod = "72h"
+    executable = true
+    path = "uv-{{ $arch }}-{{ $rustOs }}/uv"
+
 {{- if and (not .ephemeral) (not .headless) }}
 {{-   $fontDir := "" }}
 {{-   if eq .chezmoi.os "darwin" }}
@@ -116,3 +123,4 @@
     url = "https://github.com/romkatv/powerlevel10k/archive/{{ (gitHubLatestRelease "romkatv/powerlevel10k").TagName }}.tar.gz"
     exact = true
     stripComponents = 1
+
