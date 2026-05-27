@@ -35,3 +35,7 @@ alias pipclean="pip freeze | xargs pip uninstall -y"
 # uv commands
 alias uvoutdated='uv pip list --outdated'
 alias uvranges='uv pip tree --show-version-specifiers'
+
+# Homebrew commands
+# Overwrite existing Brewfile with globally installed packages
+alias brewdump='brew bundle dump -gf'
