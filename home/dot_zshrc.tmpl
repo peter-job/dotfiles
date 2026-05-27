@@ -82,12 +82,11 @@ export PSQLRC=$XDG_CONFIG_HOME/psql/psqlrc
   eval "$(atuin init zsh)"
 {{ end }}
 
-{{/*
-{{ if stat (joinPath .chezmoi.homeDir ".nvm") }}
+{{ if eq (joinPath .chezmoi.homeDir ".nvm" | lstat).type "dir" -}}
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-{{ end }} */}}
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+{{ end -}}
 
 {{- /* vim: set filetype=zsh: */}}
 

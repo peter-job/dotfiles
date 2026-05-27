@@ -67,6 +67,13 @@
 {{-   end }}
 {{- end }}
 
+[".nvm"]
+    type = "archive"
+    url = "https://github.com/nvm-sh/nvm/archive/{{ (gitHubLatestRelease "nvm-sh/nvm").TagName }}.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+
 [".oh-my-zsh"]
     type = "archive"
     url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
