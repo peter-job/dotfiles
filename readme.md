@@ -81,7 +81,7 @@ cd dotfiles
 
 ### Syncing brew packages
 
-Brew packages are defined per profile in separate Brewfiles – e.g. [personal](./home/.Brewfile_personal) and [work](./home/.Brewfile_work). The Brewfile for the relevant profile is then symlinked by chezmoi to `~/.Brewfile` via a [symlink template](./home/symlink_dot_Brewfile.tmpl).
+Brew packages are defined per profile in separate Brewfiles – e.g. [personal](./home/.Brewfile_personal) and [work](./home/.Brewfile_work). The Brewfile for the relevant profile is then symlinked by chezmoi to `~/.Brewfile` via a [symlink template](./home/symlink_dot_Brewfile.tmpl). Homebrew is configured to use this home Brewfile via environment variable `HOMEBREW_BUNDLE_FILE_GLOBAL` set in the [profile template](./home/dot_profile.tmpl).
 
 As I sometimes add and remove packages via the CLI directly, the Brewfile can get out of sync. The currently installed packages can be written back to `~/.Brewfile` (and the linked profile Brewfile):
 
