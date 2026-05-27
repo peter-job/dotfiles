@@ -81,7 +81,15 @@ cd dotfiles
 
 ### Syncing brew packages
 
-> TODO: Write something about the brew bundle --global + symlink I created here.
+Brew packages are defined per profile in separate Brewfiles – e.g. [personal](./home/.Brewfile_personal) and [work](./home/.Brewfile_work). The Brewfile for the relevant profile is then symlinked by chezmoi to `~/.Brewfile` via a [symlink template](./home/symlink_dot_Brewfile.tmpl).
+
+As I sometimes add and remove packages via the CLI directly, the Brewfile can get out of sync. The currently installed packages can be written back to `~/.Brewfile` (and the linked profile Brewfile):
+
+```bash
+brew bundle dump -gf # Overwrite existing Brewfile with globally installed packages
+```
+
+This is also configured as command `brewdump` via the [alias template](./home/dot_aliases.tmpl).
 
 ## Thoughts and considerations
 
