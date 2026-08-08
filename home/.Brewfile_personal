@@ -1,30 +1,68 @@
 tap "homebrew/bundle"
 tap "turbot/tap"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Checks for bashisms in shell scripts
 brew "checkbashisms"
+# Embeddable SQL OLAP Database Management System
 brew "duckdb"
+# XML 1.0 parser
 brew "expat"
+# Identify or delete duplicate files
 brew "fdupes"
+# GitHub command-line tool
 brew "gh"
+# Git extension for versioning large files
+brew "git-lfs"
+# Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Fast linters runner for Go
 brew "golangci-lint"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Utility for directing compilation
 brew "make"
+# Modern and intuitive terminal-based text editor
 brew "micro"
+# Collection of tools that nobody wrote when UNIX was young
 brew "moreutils"
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
-brew "python@3.13"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node@22"
+# Execute binaries from Python packages in isolated environments
 brew "pipx"
+# Object-relational database system
 brew "postgresql@15"
+# Unix pager optimized for psql
 brew "pspg"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
+# Generic machine emulator and virtualizer
+brew "qemu"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
-brew "turbot/tap/steampipe"
-cask "docker"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
+# Web browser
 cask "firefox"
+# Web browser
 cask "google-chrome"
+# File system integration
 cask "macfuse"
+# Study notes and flashcards using spaced repetition
 cask "mochi"
+# Home media server
+cask "plex-media-server"
+# Collaboration platform for API development
 cask "postman"
+# Open-source code editor
 cask "visual-studio-code"
+# Desktop Backup Client for Borg
 cask "vorta"
+go "github.com/tesserato/CodeWeaver"
+go "mvdan.cc/sh/v3/cmd/shfmt"
+npm "@angular/cli"
+npm "firebase-tools"
