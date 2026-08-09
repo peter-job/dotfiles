@@ -44,6 +44,10 @@ brew "qemu"
 brew "ripgrep"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# E-books management software
+cask "calibre"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Web browser
@@ -62,6 +66,8 @@ cask "postman"
 cask "visual-studio-code"
 # Desktop Backup Client for Borg
 cask "vorta"
+# Native desktop client for WhatsApp
+cask "whatsapp"
 go "github.com/tesserato/CodeWeaver"
 go "mvdan.cc/sh/v3/cmd/shfmt"
 npm "@angular/cli"
