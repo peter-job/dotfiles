@@ -29,6 +29,19 @@
 [credential]
 	# todo: macos specific, switch template based on OS
 	helper = osxkeychain
+{{- if eq .profile "work" }}
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
+[user]
+	signingkey = ~/.ssh/peter-job-taggle.pub
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+{{- end }}
+	
 [pager]
 	branch = false
 [alias]
