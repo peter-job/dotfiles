@@ -69,6 +69,9 @@
 	# Checkout a new branch
 	cb = checkout -b
 	
+	# Undo last commit and keep changes staged
+	undolast = git reset --soft HEAD~1
+	
 	# Skip changes to a file in the working tree (local ignore)
   skip = "!f(){ git update-index --skip-worktree -- \"$@\"; }; f"
 
